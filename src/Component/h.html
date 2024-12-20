@@ -1,0 +1,336 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBL Headphones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ff00;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+
+        .save {
+            color: #00ff00;
+            font-size: 1rem;
+        }
+
+        .in-stock {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .add-to-cart {
+            background-color: #e02d2d;
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+
+        .add-to-cart:hover {
+            background-color: #ff4c4c;
+        }
+
+        .small-thumbnails img {
+            width: 60px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container py-5">
+        <div class="row">
+            <!-- Image Gallery -->
+            <!-- <div class="col-md-4 text-center">
+                <div class="main-image">
+                    <img src="path/to/headphone-image.jpg" alt="JBL Live 660NC" class="img-fluid">
+                </div>
+                <div class="small-thumbnails d-flex flex-column align-items-center">
+                    <img src="path/to/thumb1.jpg" alt="Thumbnail 1">
+                    <img src="path/to/thumb2.jpg" alt="Thumbnail 2">
+                    <img src="path/to/thumb3.jpg" alt="Thumbnail 3">
+                </div>
+            </div> -->
+
+            <!-- Product Details -->
+            <!-- <div class="col-md-8">
+                <div class="product-title">JBL Live 660NC</div>
+                <p class="text-muted">Wireless Over-Ear NC Headphones</p>
+                <div class="ratings mb-2">
+                    <span class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    <span class="text-muted ms-2">1234 Ratings</span>
+                </div>
+                <div class="price">
+                    ₹9,999
+                    <span class="original-price ms-2">₹14,999</span>
+                </div>
+                <div class="save">You save: ₹5,000 (33%)</div>
+                <div class="in-stock mt-3">In Stock</div>
+                <div class="offers mt-4">
+                    <p>Offers and Discounts</p>
+                    <ul>
+                        <li>No Cost EMI on Credit Card</li>
+                        <li>Pay Later & Avail Cashback</li>
+                    </ul>
+                </div>
+                <button class="btn add-to-cart mt-4">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html> --> 
+<!-- import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import productsData from "./ProductList";
+import { useDispatch } from "react-redux";
+import { add } from "./redux/ProductListReducer";
+
+const All_Products = () => {
+  const dispatch = useDispatch();
+
+  // State to manage filters and sorting
+  const [selectedSort, setSelectedSort] = useState("");
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  // Handle product add to cart
+  const handleAdd = (product) => {
+    dispatch(add(product));
+  };
+
+  // Handle sorting selection
+  const handleSortSelection = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  // Handle brand selection
+  const toggleBrand = (brand) => {
+    setSelectedBrands((prev) =>
+      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
+    );
+  };
+
+  // Handle category selection
+  const toggleCategory = (category) => {
+    setSelectedCategories((prev) =>
+      prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category]
+    );
+  };
+
+  // Filter and sort products
+  const filteredProducts = productsData
+    .filter(
+      (product) =>
+        (selectedBrands.length === 0 || selectedBrands.includes(product.brand)) &&
+        (selectedCategories.length === 0 || selectedCategories.includes(product.category))
+    )
+    .sort((a, b) => {
+      if (selectedSort === "latest") return b.id - a.id; // Assuming "id" is incremental
+      if (selectedSort === "lowest") return a.finalPrice - b.finalPrice;
+      if (selectedSort === "highest") return b.finalPrice - a.finalPrice;
+      if (selectedSort === "topRated") return b.rateCount - a.rateCount;
+      return 0; // Default sort (no sorting)
+    });
+
+  return (
+    <div className="container-fluid bg-dark text-light p-4">
+      <div className="row">
+        <aside className="col-md-3">
+          <h3 className="text-danger text-start">Sort By</h3>
+          <hr />
+          <ul className="list-unstyled text-start">
+            <li
+              className="bg-dark text-light py-1"
+              onClick={() => handleSortSelection("latest")}
+              style={{ cursor: "pointer" }}
+            >
+              Latest
+            </li>
+            <li
+              className="bg-dark text-light py-1"
+              onClick={() => handleSortSelection("featured")}
+              style={{ cursor: "pointer" }}
+            >
+              Featured
+            </li>
+            <li
+              className="bg-dark text-light py-1"
+              onClick={() => handleSortSelection("topRated")}
+              style={{ cursor: "pointer" }}
+            >
+              Top Rated
+            </li>
+            <li
+              className="bg-dark text-light py-1"
+              onClick={() => handleSortSelection("lowest")}
+              style={{ cursor: "pointer" }}
+            >
+              Price (Lowest First)
+            </li>
+            <li
+              className="bg-dark text-light py-1"
+              onClick={() => handleSortSelection("highest")}
+              style={{ cursor: "pointer" }}
+            >
+              Price (Highest First)
+            </li>
+          </ul>
+
+          <h3 className="text-danger text-start mt-4">Filter By</h3>
+
+          <div>
+            <strong className="d-block text-white text-start">Brands</strong>
+            <ul className="list-unstyled text-start">
+              <li className="bg-dark text-light">
+                <input
+                  type="checkbox"
+                  id="jbl"
+                  className="me-2"
+                  onChange={() => toggleBrand("JBL")}
+                />
+                <label htmlFor="jbl">JBL</label>
+              </li>
+              <li className="bg-dark text-light">
+                <input
+                  type="checkbox"
+                  id="boat"
+                  className="me-2"
+                  onChange={() => toggleBrand("boAt")}
+                />
+                <label htmlFor="boat">boAt</label>
+              </li>
+              <li className="bg-dark text-light">
+                <input
+                  type="checkbox"
+                  id="sony"
+                  className="me-2"
+                  onChange={() => toggleBrand("Sony")}
+                />
+                <label htmlFor="sony">Sony</label>
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-4">
+            <strong className="d-block text-white text-start">Category</strong>
+            <ul className="list-unstyled text-start">
+              <li className="bg-dark text-light">
+                <input
+                  type="checkbox"
+                  id="headphones"
+                  className="me-2"
+                  onChange={() => toggleCategory("Headphones")}
+                />
+                <label htmlFor="headphones">Headphones</label>
+              </li>
+              <li className="bg-dark text-light">
+                <input
+                  type="checkbox"
+                  id="earbuds"
+                  className="me-2"
+                  onChange={() => toggleCategory("Earbuds")}
+                />
+                <label htmlFor="earbuds">Earbuds</label>
+              </li>
+              <li className="bg-dark text-light">
+                <input
+                  type="checkbox"
+                  id="earphones"
+                  className="me-2"
+                  onChange={() => toggleCategory("Earphones")}
+                />
+                <label htmlFor="earphones">Earphones</label>
+              </li>
+              <li className="bg-dark text-light">
+                <input
+                  type="checkbox"
+                  id="neckbands"
+                  className="me-2"
+                  onChange={() => toggleCategory("Neckbands")}
+                />
+                <label htmlFor="neckbands">Neckbands</label>
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-4">
+            <strong className="d-block text-white text-start">Price</strong>
+            <p className="text-start">₹0 - ₹20,000+</p>
+          </div>
+        </aside>
+
+        <main className="col-md-9">
+          <div className="row g-4">
+            {filteredProducts.map((product) => (
+              <div className="col-lg-4 col-md-4 col-sm-6" key={product.id}>
+                <div className="card h-100 text-center bg-black text-white">
+                  <Link to={`/ProductDetails/${product.id}`} className="text-decoration-none">
+                    <img
+                      src={product.images[0]}
+                      alt={product.title}
+                      className="card-img-top p-3"
+                    />
+                    <div className="text-start fs-3 ms-3">
+                      <div>
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className={i < product.rateCount ? "text-warning" : "text-secondary"}>★</span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="card-body text-start text-white">
+                      <h5 className="card-title fw-bold fs-3">{product.title}</h5>
+                      <p className="text-white">{product.info}</p>
+                      <hr />
+                      <div className="d-flex">
+                        <span className="text-white fw-bold fs-2">₹{product.finalPrice}</span>
+                        <span className="text-decoration-line-through fw-bold text-secondary ms-3 fs-3 mt-1">
+                          ₹{product.originalPrice}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                  <div className="card-body">
+                    <button
+                      className="btn btn-danger w-100 fs-4"
+                      style={{ backgroundColor: "red", borderColor: "red" }}
+                      onClick={() => handleAdd(product)}
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+};
+
+export default All_Products; -->
