@@ -3,7 +3,6 @@ import productsData from "./ProductList";
 import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { add } from './redux/ProductListReducer'
-import "./Home.css"
 
 
 const Home = () => {
