@@ -7,7 +7,7 @@ const ProductListSlice = createSlice({
         add(state, action) {
             const existingItem = state.find((item) => item.id === action.payload.id);
             if (existingItem) {
-                existingItem.quantity += action.payload.quantity;
+                existingItem.quantity += action.payload.quantity||1;
             } else {
                 state.push({ ...action.payload, quantity: 1 });
             }
