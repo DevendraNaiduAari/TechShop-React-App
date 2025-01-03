@@ -3,6 +3,9 @@ import productsData from "./ProductList";
 import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { add } from './redux/ProductListReducer'
+import products from "./products"
+// import "./Home.css";
+
 
 
 const Home = () => {
@@ -86,6 +89,29 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className="bg-dark py-5">
+        <h2 className="text-center mb-4 text-light">Featured Products</h2>
+        <div className="row justify-content-center g-4 m-0">
+          {products.map((product, index) => (
+            <div className="col-md-2 col-6 d-flex justify-content-center p-3 image1" key={index}>
+              <Link to={`/ProductDetails/${product.id}`} className="text-decoration-none">
+                <div className="product-card text-center text-white bg-transparent" style={{ position: "relative", transition: "transform 0.3s ease,z-index 0.3s ease" }}>
+                  <p className="mt-5" style={{fontSize:"19px"}}>{product.name}</p>
+                  <div className="overflow-hidden">
+                    <img src={product.image} className="card-img-top" alt={product.name} />
+                  </div>
+                  <div className="card-body">
+                    <p className="fs-5 py-2">
+                      {product.price}{" "}
+                      <span className="text-secondary text-decoration-line-through">{product.originalPrice}</span>
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
       <div className="bg-dark">
         <div className="header">
           <h1 className="text-white">Top Products</h1>
@@ -131,7 +157,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
