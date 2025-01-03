@@ -4,9 +4,6 @@ import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { add } from './redux/ProductListReducer'
 import products from "./products"
-// import "./Home.css";
-
-
 
 const Home = () => {
   const dispatch = useDispatch()
