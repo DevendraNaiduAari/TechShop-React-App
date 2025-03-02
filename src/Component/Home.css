@@ -1,0 +1,42 @@
+.btn1 {
+  width: 120px;
+  height: 40px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background-color:black;
+  color: white;
+  
+}
+.btn1.active {
+  background-color: #e74c3c;
+  color: white;
+}
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.img{
+  transition: transform 0.3s ease;
+}
+.img:hover{
+  transform: scale(1.1);
+}
+.image1:hover{
+  transform: scale(1.3);
+}
